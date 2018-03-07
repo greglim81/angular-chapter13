@@ -1,0 +1,30 @@
+<h1>Users</h1>
+<button class="btn btn-primary" (click)="add()">Add</button>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Username</th>
+			<th>Email</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let user of users | async">
+			<td>{{ user.data.name }}</td>
+			<td>{{ user.data.email }}</td>
+			<td>                
+                <a>
+					<a [routerLink]="['/add', user.id]">
+						<i class="glyphicon glyphicon-edit"></i>
+					</a>
+                </a>
+			</td>
+			<td>
+                <a>
+                    <i (click)="delete(user.id,user.data.name)" class="glyphicon glyphicon-remove"></i>
+                </a>
+            </td>
+		</tr>
+	</tbody>
+</table>
