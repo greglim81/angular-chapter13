@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFirestore, AngularFirestoreDocument} from 'angularfire2/firestore';
 
 import { User } from './user';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Component({
     selector:'user-form',
