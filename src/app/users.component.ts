@@ -23,14 +23,18 @@ export class UsersComponent {
   ngOnInit(){
     this.usersCol = this.afs.collection('users');            
     this.users = this.usersCol.snapshotChanges()
-    .map(actions => {
-      return actions.map(a => {
-        const data = a.payload.doc.data() as User;
-        const id = a.payload.doc.id;
-        return { id, data };
-      });
-    });  
+      .pipe(
+          map(actions => {
+              return actions.map( a => {
+                  const data = a.payload.doc.data() as User;
+                  const id = a.payload.doc.id;
+                  return { id, data};
+              });
+          })
+       );   
   }
+  
+ 
 
   add(){
     this._router.navigate(['add']);
