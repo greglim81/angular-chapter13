@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 interface User{
   name: string;
