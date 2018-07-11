@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 
 import {AngularFireAuth} from 'angularfire2/auth';
 import {Router} from '@angular/router';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable()
 export class LoginService {
