@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 
-import {AngularFireAuth} from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import {Router} from '@angular/router';
 import {BehaviorSubject} from 'rxjs';
 
@@ -14,14 +14,15 @@ export class LoginService {
 
   get isLoggedIn(){
     return this.loggedIn.asObservable();        
-  }   
+  }
 
   login(username, password){       
     if(username !== '' && password !== ''){                 
-        return this.afAuth.auth.signInWithEmailAndPassword(username,password)
+        return this.afAuth.signInWithEmailAndPassword(username,password)
             .then(authState => {          
                 console.log("Login-then",authState);    
-                this.loggedIn.next(true);                
+                this.loggedIn.next(true);
+                
                 this.router.navigate(['/']);                      
             })
             .catch(
@@ -32,15 +33,15 @@ export class LoginService {
             );    
     }   
   }
-  
+
   logout(){
     this.loggedIn.next(false);      
-    this.afAuth.auth.signOut();        
+    this.afAuth.signOut();        
     this.router.navigate(['/login']);
   }
 
   signup(username: string, password: string){ 
-    return this.afAuth.auth.createUserWithEmailAndPassword(username,password)    
+    return this.afAuth.createUserWithEmailAndPassword(username,password)    
         .then(
             authState => {
                 console.log("signup-then",authState);  
@@ -56,7 +57,7 @@ export class LoginService {
             }
         );       
   }
- 
+
   getCurrentUser(){       
     return this.afAuth.authState.subscribe(authState => {
         if(authState){
@@ -69,6 +70,5 @@ export class LoginService {
           this.router.navigate(['login']);                      
         }           
       });           
-  }     
-
+  }  
 }
